@@ -47,7 +47,6 @@ jobs:
               name: allure-report
               path: ./allure-report
   
-  
 Deploy:
   - name: Deploy GitHub Pages
     runs-on: ubuntu-latest
