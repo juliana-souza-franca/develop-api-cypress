@@ -58,7 +58,7 @@ Deploy:
         id-token: write
     environment:
         - name: github-pages
-          url: https://juliana-souza-franca.github.io/severest-frontend-cypress/report.html
+          url: https://juliana-souza-franca.github.io/develop-api-cypress/report.html
     steps:
        - name: Setup Pages
          uses: actions/configure-pages@v5
