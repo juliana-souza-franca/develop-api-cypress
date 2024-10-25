@@ -1,0 +1,82 @@
+---
+
+name: Cypress Tests
+
+on:
+  push:
+    branches: [" main "]
+  pull_request:
+    branches: [" main "]
+  workflow_dispatch:
+
+jobs:
+
+  test:
+    runs-on: ubuntu-latest 
+
+    steps:
+        - name: Checkout Repository
+          uses: actions/checkout@v4
+
+        - name: Setup Node.js
+          uses: actions/setup-node@v5
+          with:
+             node-version: '18'
+        
+        - name: Install Dependencies
+          run: |
+            npm install
+            npm install cypress
+            npm install --save-dev @shelex/cypress-allure-plugin
+            npm install --save-dev allure-commandline
+        
+        - name: Run Cypress Tests
+          env:
+             baseUrl: 'https://develop.qacoders.dev.br/'
+          run: |
+             npm run cypress:run
+
+        - name: Generate Allure Report
+          run: |
+             npm run allure:generate
+             allure generate ./allure-results --clean -o ./allure-report
+
+        - name: Upload Test Results
+          uses: actions/upload-artifact@v4
+          With:
+              name: allure-report
+              path: ./allure-report
+  
+Deploy:
+  - name: Deploy GitHub Pages
+    runs-on: ubuntu-latest
+    if: always()
+    needs: test
+    permissions:
+        contents: read
+        pages: write
+        id-token: write
+    environment:
+        - name: github-pages
+          url: https://juliana-souza-franca.github.io/severest-frontend-cypress/report.html
+    steps:
+       - name: Setup Pages
+         uses: actions/configure-pages@v5
+
+       - name: Download Artifacts
+         uses: actions/download-artifact@v4
+         with:
+            name: allure-report
+            path: ./allure-repor
+
+       - name: Upload Allure Report to GitHub Pages
+         uses: actions/upload-pages-artifact@v3
+         with:
+            path: ./allure-report
+
+       - name: Deploy to GitHub Pages
+         uses: actions/deploy-pages@v4
+      
+
+              
+       

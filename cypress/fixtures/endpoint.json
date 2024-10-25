@@ -1,0 +1,9 @@
+{
+  "ADMIN": {
+    "ENDPOINT_ADMIN": "api/login/"
+  },
+  "USER": {
+    "ENDPOINT_USER": "api/user",
+    "ENDPOINT_USER_PASSWORD": "/api/user/password/"
+  }
+}
