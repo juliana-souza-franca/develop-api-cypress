@@ -20,7 +20,7 @@ jobs:
       - name: List Files and Folders
         run: |
           pwd
-          ls -R  # Este passo vai mostrar a estrutura completa de diretórios
+          ls -R  
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -28,7 +28,6 @@ jobs:
           node-version: '18'
         
       - name: Install Dependencies
-        working-directory: TECH-LEAD_CYPRESS/CYPRESS/CYPRESS_API  
         run: |
           npm install
           npm install cypress
@@ -37,12 +36,10 @@ jobs:
         
       - name: Run Cypress Tests
         env:
-          baseUrl: 'https://develop.qacoders.dev.br/'
-        working-directory: TECH-LEAD_CYPRESS/CYPRESS/CYPRESS_API  
+          baseUrl: 'https://develop.qacoders.dev.br/'  
         run: npm run cypress:run
 
-      - name: Generate Allure Report
-        working-directory: TECH-LEAD_CYPRESS/CYPRESS/CYPRESS_API 
+      - name: Generate Allure Report 
         run: |
           npm run allure:generate
           allure generate ./allure-results --clean -o ./allure-report
@@ -51,7 +48,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: TECH-LEAD_CYPRESS/CYPRESS/CYPRESS_API/allure-report  
+          path: ./allure-report  
 
   deploy:
     name: Deploy GitHub Pages
@@ -73,12 +70,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: allure-report
-          path: TECH-LEAD_CYPRESS/CYPRESS/CYPRESS_API/allure-report  
+          path: ./allure-report   
 
       - name: Upload Allure Report to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: TECH-LEAD_CYPRESS/CYPRESS/CYPRESS_API/allure-report 
+          path: ./allure-report 
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
