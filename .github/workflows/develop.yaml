@@ -26,6 +26,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          
+      - name: Check Node.js and NPM Version
+        run: |
+          node -v
+          npm -v
+
         
       - name: Install Dependencie
         run: |
