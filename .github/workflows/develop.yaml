@@ -35,11 +35,8 @@ jobs:
         
       - name: Install Dependencie
         run: |
-          npm ci
-          npm install cypress
-          npm install --save-dev @shelex/cypress-allure-plugin
-          npm install --save-dev allure-commandline
-        
+          npm i
+          
       - name: Run Cypress Test
         run: npm run cypress:run
 
@@ -53,6 +50,7 @@ jobs:
         with:
           name: allure-report
           path: ./allure-report  
+
 
   deploy:
     name: Deploy GitHub Pages
