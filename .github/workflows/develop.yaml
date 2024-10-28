@@ -34,9 +34,7 @@ jobs:
           npm install --save-dev @shelex/cypress-allure-plugin
           npm install --save-dev allure-commandline
         
-      - name: Run Cypress Tests
-        env:
-          baseUrl: 'https://develop.qacoders.dev.br/'
+      - name: Run Cypress Test
         run: npm run cypress:run
 
       - name: Generate Allure Report
