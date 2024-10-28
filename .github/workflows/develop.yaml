@@ -28,7 +28,7 @@ jobs:
           node-version: '18'
         
       - name: Install Dependencies
-        working-directory: ./CYPRESS_API 
+        working-directory: ./C:/CYPRESS_API
         run: |
           npm install
           npm install cypress
@@ -38,11 +38,11 @@ jobs:
       - name: Run Cypress Tests
         env:
           baseUrl: 'https://develop.qacoders.dev.br/'
-        working-directory: ./CYPRESS_API  
+        working-directory: ./C:/CYPRESS_API  
         run: npm run cypress:run
 
       - name: Generate Allure Report
-        working-directory: ./CYPRESS_API  
+        working-directory: ./C:/CYPRESS_API 
         run: |
           npm run allure:generate
           allure generate ./allure-results --clean -o ./allure-report
