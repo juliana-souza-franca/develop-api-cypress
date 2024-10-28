@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          
+
       - name: Check Node.js and NPM Version
         run: |
           node -v
@@ -35,7 +35,7 @@ jobs:
         
       - name: Install Dependencie
         run: |
-          npm npm ci
+          npm ci
           npm install cypress
           npm install --save-dev @shelex/cypress-allure-plugin
           npm install --save-dev allure-commandline
