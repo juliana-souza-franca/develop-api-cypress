@@ -82,9 +82,11 @@ jobs:
           name: allure-report
           path: ./allure-report  
 
+
       - name: List Downloaded Artifacts
         run: |
           ls -R ./allure-report
+
 
       - name: Upload Allure Report to GitHub Pages
         uses: actions/upload-pages-artifact@v3
