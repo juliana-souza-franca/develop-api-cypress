@@ -23,6 +23,7 @@ jobs:
           node-version: '18'
         
       - name: Install Dependencies
+        working-directory: ./CYPRESS_API
         run: |
           npm install
           npm install cypress
@@ -32,13 +33,13 @@ jobs:
       - name: Run Cypress Tests
         env:
           baseUrl: 'https://develop.qacoders.dev.br/'
+        working-directory: ./CYPRESS_API
         run: |
-          cd ./CYPRESS_API
           npm run cypress:run
 
       - name: Generate Allure Report
+        working-directory: ./CYPRESS_API
         run: |
-          cd ./CYPRESS_API
           npm run allure:generate
           allure generate ./allure-results --clean -o ./allure-report
 
@@ -46,7 +47,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: allure-report
-          path: ./allure-report
+          path: ./CYPRESS_API/allure-report 
 
 
   deploy:
@@ -69,12 +70,12 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: allure-report
-          path: ./allure-report
+          path: ./CYPRESS_API/allure-report 
 
       - name: Upload Allure Report to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./allure-report
+          path: ./CYPRESS_API/allure-report 
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
