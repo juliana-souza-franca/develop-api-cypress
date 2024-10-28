@@ -47,7 +47,7 @@ jobs:
 
       - name: Generate Allure Report
         run: |
-          allure generate ./allure-results --clean -o ./allure-report || { echo 'Allure report generation failed'; exit 1; }
+          allure generate ./allure-results --clean -o ./allure-report 
 
       - name: List Allure Report Files
         run: |
