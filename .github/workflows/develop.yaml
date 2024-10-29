@@ -71,7 +71,7 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: https://juliana-souza-franca.github.io/develop-api-cypress/allure-report/index.html
+      url: https://juliana-souza-franca.github.io/develop-api-cypress/index.html
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -93,9 +93,5 @@ jobs:
         with:
           path: ./allure-report 
 
-      - name: Publish Allure Test Report
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_branch: gh-pages
-            publish_dir: ./allure-repor
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
