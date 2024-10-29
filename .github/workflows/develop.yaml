@@ -94,4 +94,4 @@ jobs:
           path: ./allure-report 
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+        uses: peaceiris/actions-gh-pages@v3
