@@ -6,7 +6,7 @@
     "cypress": "^13.14.2"
   },
   "scripts": {
-    "cypress:run": "cypress run",
+    "cypress:run": "cypress run --env allure=true",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
     "allure:open": "allure open allure-report"
   }
