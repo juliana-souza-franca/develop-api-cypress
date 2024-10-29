@@ -39,6 +39,9 @@ jobs:
       - name: Run Cypress Test
         run: npm run cypress:run
       
+      - name: Run Cypress Test
+        run: npm run cypress:run
+        
       - name: Install Allure CLI
         run: npm install -g allure-commandline --save-dev
 
